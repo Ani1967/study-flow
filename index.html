@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StudyFlow — Smart Study System for Class 8, 9 & 10</title>
+<meta name="description" content="Free and premium study notes for Class 8, 9, 10 — Maths & Science. Structured, easy-to-understand notes to help you score higher.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --primary:#4f46e5;--primary-dark:#3730a3;--secondary:#7c3aed;
+  --accent:#06b6d4;--text:#1e293b;--muted:#64748b;--light:#f8fafc;
+  --white:#ffffff;--border:#e2e8f0;
+}
+body{font-family:'Segoe UI',system-ui,sans-serif;color:var(--text);background:var(--white)}
+a{text-decoration:none;color:inherit}
+
+/* ── NAV ── */
+nav{
+  position:sticky;top:0;z-index:100;
+  background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);
+  padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:64px;
+}
+.logo{font-size:1.4em;font-weight:800;color:var(--primary)}
+.logo span{color:var(--secondary)}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{font-size:14px;font-weight:500;color:var(--muted);transition:.2s}
+.nav-links a:hover{color:var(--primary)}
+.nav-cta{
+  background:var(--primary);color:white;padding:9px 20px;
+  border-radius:8px;font-size:14px;font-weight:600;transition:.2s;
+}
+.nav-cta:hover{background:var(--primary-dark);color:white}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{width:22px;height:2px;background:var(--text);border-radius:2px;transition:.3s}
+.mobile-menu{display:none;position:fixed;inset:64px 0 0;background:white;z-index:99;padding:24px;flex-direction:column;gap:20px}
+.mobile-menu a{font-size:1.1em;font-weight:500;color:var(--text);padding:12px 0;border-bottom:1px solid var(--border)}
+.mobile-menu .btn-full{text-align:center;background:var(--primary);color:white;padding:14px;border-radius:10px;font-weight:600}
+
+/* ── HERO ── */
+.hero{
+  background:linear-gradient(135deg,#4f46e5 0%,#7c3aed 50%,#06b6d4 100%);
+  padding:80px 24px 100px;text-align:center;color:white;position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='4'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.hero-content{position:relative;max-width:760px;margin:0 auto}
+.hero-badge{
+  display:inline-block;background:rgba(255,255,255,0.2);border:1px solid rgba(255,255,255,0.3);
+  padding:6px 16px;border-radius:50px;font-size:13px;font-weight:600;margin-bottom:24px;
+}
+.hero h1{font-size:clamp(2em,5vw,3.2em);font-weight:900;line-height:1.2;margin-bottom:20px}
+.hero h1 span{color:#a5f3fc}
+.hero p{font-size:1.15em;opacity:.9;max-width:580px;margin:0 auto 36px;line-height:1.7}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.btn-white{
+  background:white;color:var(--primary);padding:14px 28px;border-radius:10px;
+  font-weight:700;font-size:15px;transition:.2s;display:inline-flex;align-items:center;gap:8px;
+}
+.btn-white:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,0,0,0.15)}
+.btn-outline{
+  background:transparent;border:2px solid rgba(255,255,255,0.6);color:white;
+  padding:14px 28px;border-radius:10px;font-weight:700;font-size:15px;transition:.2s;
+}
+.btn-outline:hover{background:rgba(255,255,255,0.1)}
+.hero-stats{
+  display:flex;gap:40px;justify-content:center;margin-top:56px;flex-wrap:wrap;
+}
+.stat{text-align:center}
+.stat-num{font-size:2em;font-weight:900}
+.stat-label{font-size:13px;opacity:.8;margin-top:2px}
+
+/* ── SECTIONS ── */
+section{padding:72px 24px}
+.container{max-width:1100px;margin:0 auto}
+.section-tag{
+  display:inline-block;background:#ede9fe;color:var(--secondary);
+  padding:5px 14px;border-radius:50px;font-size:12px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.5px;margin-bottom:12px;
+}
+h2{font-size:clamp(1.6em,3vw,2.2em);font-weight:800;color:var(--text);margin-bottom:12px}
+.subtitle{font-size:1.05em;color:var(--muted);max-width:560px;line-height:1.7}
+.section-head{margin-bottom:48px}
+
+/* ── FEATURES ── */
+.features{background:var(--light)}
+.features-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px}
+.feature-card{
+  background:white;border-radius:16px;padding:28px;
+  border:1px solid var(--border);transition:.3s;
+}
+.feature-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(79,70,229,0.1)}
+.feature-icon{
+  width:52px;height:52px;border-radius:12px;
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  display:flex;align-items:center;justify-content:center;font-size:1.5em;margin-bottom:16px;
+}
+.feature-card h3{font-size:1.05em;font-weight:700;margin-bottom:8px}
+.feature-card p{font-size:14px;color:var(--muted);line-height:1.6}
+
+/* ── NOTES GRID ── */
+.grade-tabs{display:flex;gap:8px;margin-bottom:32px;flex-wrap:wrap}
+.tab{
+  padding:8px 20px;border-radius:8px;border:2px solid var(--border);
+  cursor:pointer;font-weight:600;font-size:14px;transition:.2s;background:white;
+}
+.tab.active{background:var(--primary);color:white;border-color:var(--primary)}
+.tab:hover:not(.active){border-color:var(--primary);color:var(--primary)}
+.notes-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:20px}
+.note-card{
+  background:white;border-radius:14px;border:1px solid var(--border);
+  overflow:hidden;transition:.3s;position:relative;
+}
+.note-card:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(0,0,0,0.08)}
+.note-badge{
+  position:absolute;top:14px;right:14px;padding:4px 10px;border-radius:50px;
+  font-size:11px;font-weight:700;
+}
+.badge-free{background:#dcfce7;color:#16a34a}
+.badge-premium{background:#fef3c7;color:#d97706}
+.note-header{padding:20px 20px 14px;border-bottom:1px solid var(--border)}
+.note-subject{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:12px;font-weight:600;color:var(--primary);
+  background:#ede9fe;padding:4px 10px;border-radius:50px;margin-bottom:10px;
+}
+.note-card h3{font-size:1em;font-weight:700;line-height:1.4}
+.note-card .grade-tag{font-size:12px;color:var(--muted);margin-top:4px}
+.note-footer{padding:14px 20px;display:flex;align-items:center;justify-content:space-between}
+.note-price{font-weight:800;color:var(--text);font-size:1.05em}
+.note-price.free-price{color:#16a34a}
+.btn-download,.btn-buy{
+  padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;
+  cursor:pointer;transition:.2s;border:none;
+}
+.btn-download{background:#dcfce7;color:#16a34a}
+.btn-download:hover{background:#16a34a;color:white}
+.btn-buy{background:linear-gradient(135deg,var(--primary),var(--secondary));color:white}
+.btn-buy:hover{opacity:.9;transform:scale(1.03)}
+
+/* ── HOW IT WORKS ── */
+.how{background:var(--light)}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;position:relative}
+.step{text-align:center;padding:32px 20px}
+.step-num{
+  width:56px;height:56px;border-radius:50%;
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  color:white;font-size:1.4em;font-weight:900;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 20px;
+}
+.step h3{font-weight:700;margin-bottom:8px}
+.step p{font-size:14px;color:var(--muted);line-height:1.6}
+
+/* ── PREMIUM CTA ── */
+.premium-cta{
+  background:linear-gradient(135deg,#4f46e5,#7c3aed);
+  border-radius:20px;padding:56px 40px;text-align:center;color:white;
+}
+.premium-cta h2{color:white;margin-bottom:12px}
+.premium-cta p{opacity:.9;max-width:500px;margin:0 auto 32px;line-height:1.7}
+.price-cards{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:36px}
+.price-card{
+  background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);
+  border-radius:14px;padding:24px 28px;min-width:180px;
+}
+.price-card.featured{background:white;border-color:white}
+.price-card.featured *{color:var(--primary)!important}
+.price-label{font-size:13px;opacity:.8;margin-bottom:6px}
+.price-amount{font-size:2em;font-weight:900;margin-bottom:4px}
+.price-desc{font-size:12px;opacity:.7}
+
+/* ── SUBJECTS ── */
+.subjects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px}
+.subject-card{
+  border-radius:16px;padding:28px;text-align:center;color:white;
+  transition:.3s;cursor:pointer;
+}
+.subject-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,0.15)}
+.subject-card .s-icon{font-size:2.5em;margin-bottom:12px}
+.subject-card h3{font-weight:700;margin-bottom:4px}
+.subject-card p{font-size:13px;opacity:.85}
+.s-math8{background:linear-gradient(135deg,#4f46e5,#6366f1)}
+.s-sci8{background:linear-gradient(135deg,#0891b2,#06b6d4)}
+.s-math9{background:linear-gradient(135deg,#7c3aed,#8b5cf6)}
+.s-sci9{background:linear-gradient(135deg,#059669,#10b981)}
+.s-math10{background:linear-gradient(135deg,#dc2626,#ef4444)}
+.s-sci10{background:linear-gradient(135deg,#d97706,#f59e0b)}
+
+/* ── TESTIMONIALS ── */
+.testimonials{background:var(--light)}
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.testi-card{background:white;border-radius:14px;padding:24px;border:1px solid var(--border)}
+.stars{color:#f59e0b;font-size:1.1em;margin-bottom:12px}
+.testi-text{font-size:14px;color:var(--muted);line-height:1.7;margin-bottom:16px;font-style:italic}
+.testi-author{display:flex;align-items:center;gap:12px}
+.testi-avatar{
+  width:40px;height:40px;border-radius:50%;
+  background:linear-gradient(135deg,var(--primary),var(--secondary));
+  display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:14px;
+}
+.testi-name{font-weight:700;font-size:14px}
+.testi-grade{font-size:12px;color:var(--muted)}
+
+/* ── FOOTER ── */
+footer{background:#0f172a;color:#94a3b8;padding:48px 24px 24px}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:40px;margin-bottom:40px;max-width:1100px;margin-left:auto;margin-right:auto}
+.footer-brand p{font-size:14px;line-height:1.7;margin-top:10px;color:#64748b}
+.footer-col h4{color:white;font-weight:700;margin-bottom:16px;font-size:14px}
+.footer-col a{display:block;font-size:14px;margin-bottom:10px;color:#64748b;transition:.2s}
+.footer-col a:hover{color:white}
+.footer-bottom{border-top:1px solid #1e293b;padding-top:24px;text-align:center;font-size:13px;max-width:1100px;margin:0 auto}
+
+/* ── WHATSAPP FLOAT ── */
+.wa-float{
+  position:fixed;bottom:28px;right:28px;z-index:200;
+  width:58px;height:58px;border-radius:50%;
+  background:#25d366;color:white;font-size:1.8em;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 20px rgba(37,211,102,0.5);
+  transition:.3s;cursor:pointer;
+}
+.wa-float:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(37,211,102,0.6)}
+.wa-tooltip{
+  position:fixed;bottom:98px;right:28px;z-index:200;
+  background:white;border-radius:12px;padding:10px 14px;
+  font-size:13px;font-weight:600;color:var(--text);
+  box-shadow:0 4px 20px rgba(0,0,0,0.12);white-space:nowrap;
+  opacity:0;pointer-events:none;transition:.3s;transform:translateY(8px);
+}
+.wa-float:hover + .wa-tooltip,.wa-tooltip:hover{opacity:1;transform:translateY(0)}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .nav-links,.nav-cta{display:none}
+  .hamburger{display:flex}
+  .footer-grid{grid-template-columns:1fr}
+  .hero-stats{gap:24px}
+  .premium-cta{padding:36px 20px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="logo">Study<span>Flow</span></div>
+  <div class="nav-links">
+    <a href="#free-notes">Free Notes</a>
+    <a href="#premium-notes">Premium</a>
+    <a href="#subjects">Subjects</a>
+    <a href="#how">How it Works</a>
+    <a href="https://wa.me/919052416158" target="_blank" class="nav-cta">📞 Talk to a Mentor</a>
+  </div>
+  <div class="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#free-notes" onclick="toggleMenu()">📄 Free Notes</a>
+  <a href="#premium-notes" onclick="toggleMenu()">⭐ Premium Notes</a>
+  <a href="#subjects" onclick="toggleMenu()">📚 Subjects</a>
+  <a href="#how" onclick="toggleMenu()">❓ How it Works</a>
+  <a href="https://wa.me/919052416158" target="_blank" class="btn-full">💬 Talk to a Mentor</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">📚 Class 8 · 9 · 10 — Maths & Science</div>
+    <h1>Study Smarter.<br><span>Score Higher.</span></h1>
+    <p>Structured notes, practice questions, and personal mentoring — everything a Class 8, 9 & 10 student needs to stop struggling and start excelling.</p>
+    <div class="hero-btns">
+      <a href="#free-notes" class="btn-white">📥 Get Free Notes</a>
+      <a href="https://wa.me/919052416158?text=Hi%2C%20I%20want%20to%20know%20more%20about%20StudyFlow" target="_blank" class="btn-outline">💬 Talk to a Mentor</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Students Helped</div></div>
+      <div class="stat"><div class="stat-num">3</div><div class="stat-label">Grades Covered</div></div>
+      <div class="stat"><div class="stat-num">2</div><div class="stat-label">Core Subjects</div></div>
+      <div class="stat"><div class="stat-num">Free</div><div class="stat-label">Notes Available</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="features">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-tag">Why StudyFlow</div>
+      <h2>Everything in one place</h2>
+      <p class="subtitle">No more hunting for notes across YouTube, PDFs, and random websites. StudyFlow puts it all together.</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">📝</div>
+        <h3>Chapter-wise Notes</h3>
+        <p>Clean, structured notes for every chapter in Maths & Science — Class 8, 9 and 10. Easy to read and remember.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🎯</div>
+        <h3>Exam-focused Practice</h3>
+        <p>Practice questions designed around board exam patterns. Know exactly what to expect and how to answer.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">👨‍🏫</div>
+        <h3>Personal Mentoring</h3>
+        <p>Stuck on a concept? Chat with a mentor on WhatsApp or book a 1-on-1 session. Real help, real fast.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">📱</div>
+        <h3>Study on Any Device</h3>
+        <p>Download PDFs and study offline. Works perfectly on mobile, tablet, or computer.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUBJECTS -->
+<section id="subjects">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-tag">Subjects</div>
+      <h2>Pick your grade & subject</h2>
+      <p class="subtitle">Notes available for Class 8, 9 and 10 — Maths and Science.</p>
+    </div>
+    <div class="subjects-grid">
+      <div class="subject-card s-math8" onclick="filterNotes('8','maths')">
+        <div class="s-icon">🔢</div>
+        <h3>Class 8 Maths</h3>
+        <p>Algebra, Geometry, Mensuration & more</p>
+      </div>
+      <div class="subject-card s-sci8" onclick="filterNotes('8','science')">
+        <div class="s-icon">🔬</div>
+        <h3>Class 8 Science</h3>
+        <p>Physics, Chemistry, Biology basics</p>
+      </div>
+      <div class="subject-card s-math9" onclick="filterNotes('9','maths')">
+        <div class="s-icon">📐</div>
+        <h3>Class 9 Maths</h3>
+        <p>Number Systems, Polynomials, Triangles</p>
+      </div>
+      <div class="subject-card s-sci9" onclick="filterNotes('9','science')">
+        <div class="s-icon">⚗️</div>
+        <h3>Class 9 Science</h3>
+        <p>Matter, Motion, Living World</p>
+      </div>
+      <div class="subject-card s-math10" onclick="filterNotes('10','maths')">
+        <div class="s-icon">📊</div>
+        <h3>Class 10 Maths</h3>
+        <p>Real Numbers, Quadratics, Trigonometry</p>
+      </div>
+      <div class="subject-card s-sci10" onclick="filterNotes('10','science')">
+        <div class="s-icon">🧬</div>
+        <h3>Class 10 Science</h3>
+        <p>Chemical Reactions, Life Processes, Light</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FREE NOTES -->
+<section id="free-notes" style="background:var(--light)">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-tag">Free Notes</div>
+      <h2>Start learning for free</h2>
+      <p class="subtitle">Download these notes instantly — no sign-up needed.</p>
+    </div>
+    <div class="grade-tabs">
+      <div class="tab active" onclick="filterTab('all',this)">All</div>
+      <div class="tab" onclick="filterTab('8',this)">Class 8</div>
+      <div class="tab" onclick="filterTab('9',this)">Class 9</div>
+      <div class="tab" onclick="filterTab('10',this)">Class 10</div>
+    </div>
+    <div class="notes-grid" id="freeNotesGrid">
+      <!-- cards injected by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- PREMIUM NOTES -->
+<section id="premium-notes">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-tag">Premium Notes</div>
+      <h2>Go deeper. Score higher.</h2>
+      <p class="subtitle">Detailed notes with solved examples, shortcuts, and previous year questions. Pay once, yours forever.</p>
+    </div>
+    <div class="notes-grid" id="premiumNotesGrid">
+      <!-- cards injected by JS -->
+    </div>
+    <div style="margin-top:32px;padding:20px;background:#fef3c7;border-radius:12px;font-size:14px;color:#92400e;text-align:center">
+      💡 After payment, send your receipt screenshot to <strong>WhatsApp +91 90524 16158</strong> — you'll get your download link within 1 hour.
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="how">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-tag">How it Works</div>
+      <h2>Simple. Fast. Effective.</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Pick your notes</h3>
+        <p>Browse by grade and subject. Free notes are instant downloads. Premium notes need a one-time payment.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Pay &amp; get access</h3>
+        <p>For premium notes, pay via Razorpay (UPI / Card / Net Banking). Send receipt to WhatsApp — get link in 1 hour.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Study &amp; ask questions</h3>
+        <p>Stuck somewhere? WhatsApp your mentor anytime. Book a 1-on-1 session if you need deeper help.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h3>Score higher</h3>
+        <p>Use the structured notes + practice questions to walk into your exam confident and prepared.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PREMIUM CTA -->
+<section style="padding:72px 24px;background:var(--light)">
+  <div class="container">
+    <div class="premium-cta">
+      <h2>Get a Personal Mentor</h2>
+      <p>One-on-one sessions for Class 8, 9 & 10 Maths and Science. Ask anything, get clear answers, and build real confidence before your exams.</p>
+      <div class="price-cards">
+        <div class="price-card">
+          <div class="price-label">Single Session</div>
+          <div class="price-amount">₹499</div>
+          <div class="price-desc">1 hour · any topic</div>
+        </div>
+        <div class="price-card featured">
+          <div class="price-label">Monthly Plan</div>
+          <div class="price-amount">₹1,999</div>
+          <div class="price-desc">8 sessions/month</div>
+        </div>
+        <div class="price-card">
+          <div class="price-label">Exam Pack</div>
+          <div class="price-amount">₹2,999</div>
+          <div class="price-desc">Full chapter revision</div>
+        </div>
+      </div>
+      <a href="https://wa.me/919052416158?text=Hi%2C%20I%20want%20to%20book%20a%20mentoring%20session" target="_blank" class="btn-white">💬 Book a Session on WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-tag">Students Say</div>
+      <h2>Real results, real students</h2>
+    </div>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"The Class 10 Maths notes are so clearly written. I finally understood Trigonometry after struggling with it for months."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">P</div>
+          <div><div class="testi-name">Priya S.</div><div class="testi-grade">Class 10 · CBSE</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"Booked a session for Class 9 Science — the mentor explained Chemical Reactions so simply. Got 87 in my unit test after that!"</p>
+        <div class="testi-author">
+          <div class="testi-avatar">A</div>
+          <div><div class="testi-name">Arjun M.</div><div class="testi-grade">Class 9 · ICSE</div></div>
+        </div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"Free notes are great for quick revision. The premium notes have all the important questions with step-by-step solutions."</p>
+        <div class="testi-author">
+          <div class="testi-avatar">R</div>
+          <div><div class="testi-name">Riya K.</div><div class="testi-grade">Class 8 · State Board</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo" style="color:#818cf8">Study<span style="color:#a78bfa">Flow</span></div>
+      <p>Helping Class 8, 9 & 10 students study smarter and score higher in Maths and Science.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <a href="#free-notes">Free Notes</a>
+      <a href="#premium-notes">Premium Notes</a>
+      <a href="#subjects">Subjects</a>
+      <a href="#how">How it Works</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="https://wa.me/919052416158" target="_blank">💬 WhatsApp</a>
+      <a href="mailto:study@study-flow.in">📧 Email Us</a>
+      <a href="https://razorpay.me/@aniruddhakar" target="_blank">💳 Pay via Razorpay</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    © 2025 StudyFlow · www.study-flow.in · All rights reserved
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/919052416158?text=Hi%2C%20I%20found%20StudyFlow%20and%20want%20to%20know%20more" target="_blank" class="wa-float" title="Chat on WhatsApp">💬</a>
+<div class="wa-tooltip">Chat with us on WhatsApp</div>
+
+<script>
+// ── NOTE DATA ──
+const FREE_NOTES = [
+  { grade:'8', subject:'maths',   title:'Chapter 1 — Rational Numbers',         desc:'Number line, operations, properties',  icon:'🔢', link:'#' },
+  { grade:'8', subject:'science', title:'Chapter 1 — Crop Production & Management', desc:'Agriculture methods, irrigation, tools', icon:'🌾', link:'#' },
+  { grade:'9', subject:'maths',   title:'Chapter 1 — Number Systems',            desc:'Real numbers, irrational numbers',     icon:'📐', link:'#' },
+  { grade:'9', subject:'science', title:'Chapter 1 — Matter in Our Surroundings',desc:'States of matter, evaporation',        icon:'⚗️', link:'#' },
+  { grade:'10',subject:'maths',   title:'Chapter 1 — Real Numbers',              desc:'Euclid\'s division, HCF, LCM',         icon:'📊', link:'#' },
+  { grade:'10',subject:'science', title:'Chapter 1 — Chemical Reactions',        desc:'Types, equations, balancing',          icon:'🧬', link:'#' },
+];
+
+const PREMIUM_NOTES = [
+  { grade:'8', subject:'maths',   title:'Complete Class 8 Maths — All Chapters', desc:'All 16 chapters, solved examples, practice Q&A', icon:'🔢', price:'₹149', amount:149 },
+  { grade:'8', subject:'science', title:'Complete Class 8 Science — All Chapters',desc:'Physics, Chemistry, Biology — full notes',       icon:'🔬', price:'₹149', amount:149 },
+  { grade:'9', subject:'maths',   title:'Complete Class 9 Maths — All Chapters', desc:'All 15 chapters with shortcuts & tricks',         icon:'📐', price:'₹199', amount:199 },
+  { grade:'9', subject:'science', title:'Complete Class 9 Science — All Chapters',desc:'Full notes + previous year questions',            icon:'⚗️', price:'₹199', amount:199 },
+  { grade:'10',subject:'maths',   title:'Complete Class 10 Maths — All Chapters',desc:'Board-focused notes, sample papers, solutions',   icon:'📊', price:'₹249', amount:249 },
+  { grade:'10',subject:'science', title:'Complete Class 10 Science — All Chapters',desc:'All chapters + important diagrams + PYQs',      icon:'🧬', price:'₹249', amount:249 },
+];
+
+function noteCard(n, free) {
+  return `<div class="note-card" data-grade="${n.grade}" data-subject="${n.subject}">
+    <span class="note-badge ${free?'badge-free':'badge-premium'}">${free?'FREE':'PREMIUM'}</span>
+    <div class="note-header">
+      <div class="note-subject">${n.icon} Class ${n.grade} ${n.subject.charAt(0).toUpperCase()+n.subject.slice(1)}</div>
+      <h3>${n.title}</h3>
+      <div class="grade-tag">${n.desc}</div>
+    </div>
+    <div class="note-footer">
+      ${free
+        ? `<span class="note-price free-price">Free</span>
+           <a href="${n.link}" target="_blank"><button class="btn-download">📥 Download</button></a>`
+        : `<span class="note-price">${n.price}</span>
+           <a href="https://razorpay.me/@aniruddhakar?amount=${n.amount*100}" target="_blank"><button class="btn-buy">Buy Now →</button></a>`
+      }
+    </div>
+  </div>`;
+}
+
+function renderNotes(gradeFilter) {
+  const filtered = gradeFilter === 'all' ? FREE_NOTES : FREE_NOTES.filter(n => n.grade === gradeFilter);
+  document.getElementById('freeNotesGrid').innerHTML = filtered.map(n => noteCard(n, true)).join('');
+}
+function renderPremium() {
+  document.getElementById('premiumNotesGrid').innerHTML = PREMIUM_NOTES.map(n => noteCard(n, false)).join('');
+}
+
+function filterTab(grade, el) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+  renderNotes(grade);
+}
+
+function filterNotes(grade, subject) {
+  document.getElementById('free-notes').scrollIntoView({behavior:'smooth'});
+  const tab = [...document.querySelectorAll('.tab')].find(t => t.textContent.includes(grade));
+  if (tab) { document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active')); tab.classList.add('active'); }
+  renderNotes(grade);
+}
+
+function toggleMenu() {
+  const m = document.getElementById('mobileMenu');
+  m.style.display = m.style.display === 'flex' ? 'none' : 'flex';
+}
+
+// Init
+renderNotes('all');
+renderPremium();
+</script>
+</body>
+</html>

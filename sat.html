@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SAT Mastery System — Study-Flow</title>
+<meta name="description" content="India's first WhatsApp-native SAT prep system. Beginner to 1400+ in 8 weeks. Built for Indian students and NRI families.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:        #0e0e0d;
+  --ink-soft:   #3a3a37;
+  --ink-muted:  #6b6b65;
+  --paper:      #f7f5f0;
+  --paper-warm: #ede9e1;
+  --teal:       #0f6e56;
+  --teal-light: #e1f5ee;
+  --teal-mid:   #1d9e75;
+  --amber:      #c17c2a;
+  --amber-light:#faeeda;
+  --coral:      #c94f2e;
+  --coral-light:#faece7;
+  --purple:     #3c3489;
+  --purple-light:#eeedfe;
+  --gold:       #d4a843;
+  --white:      #ffffff;
+  --serif:      'Instrument Serif', Georgia, serif;
+  --sans:       'DM Sans', sans-serif;
+  --mono:       'DM Mono', monospace;
+  --r-sm:       8px;
+  --r-md:       14px;
+  --r-lg:       20px;
+  --r-xl:       32px;
+  --shadow:     0 2px 20px rgba(14,14,13,0.08);
+  --shadow-lg:  0 8px 48px rgba(14,14,13,0.12);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--paper);
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; } 50% { opacity: 0.6; }
+}
+@keyframes ticker {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.fade-up   { animation: fadeUp 0.7s ease both; }
+.fade-up-1 { animation-delay: 0.1s; }
+.fade-up-2 { animation-delay: 0.2s; }
+.fade-up-3 { animation-delay: 0.3s; }
+.fade-up-4 { animation-delay: 0.4s; }
+.fade-up-5 { animation-delay: 0.5s; }
+
+/* NAV */
+nav {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(247,245,240,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--paper-warm);
+  padding: 0 24px;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 60px;
+}
+.nav-logo {
+  font-family: var(--serif);
+  font-size: 20px;
+  color: var(--teal);
+  text-decoration: none;
+  display: flex; align-items: center; gap: 8px;
+}
+.nav-logo span {
+  font-family: var(--sans);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: var(--ink-muted);
+  text-transform: uppercase;
+  border-left: 1px solid var(--paper-warm);
+  padding-left: 10px;
+}
+.nav-cta {
+  background: var(--teal);
+  color: var(--white);
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 8px 20px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+}
+.nav-cta:hover { background: #0a5240; transform: translateY(-1px); }
+
+/* TICKER */
+.ticker-wrap {
+  background: var(--teal);
+  overflow: hidden;
+  padding: 10px 0;
+  white-space: nowrap;
+}
+.ticker-track {
+  display: inline-block;
+  animation: ticker 28s linear infinite;
+}
+.ticker-track span {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: rgba(255,255,255,0.85);
+  letter-spacing: 0.05em;
+  padding: 0 32px;
+}
+.ticker-track span.dot { color: var(--gold); padding: 0 4px; }
+
+/* HERO */
+.hero {
+  padding: 72px 24px 64px;
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--teal-light);
+  border: 1px solid rgba(15,110,86,0.2);
+  border-radius: 100px;
+  padding: 6px 16px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--teal);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+.hero-badge::before {
+  content: '';
+  width: 7px; height: 7px;
+  background: var(--teal-mid);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+.hero h1 {
+  font-family: var(--serif);
+  font-size: clamp(36px, 7vw, 62px);
+  line-height: 1.1;
+  color: var(--ink);
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+.hero h1 em { font-style: italic; color: var(--teal); }
+.hero-sub {
+  font-size: clamp(16px, 3vw, 19px);
+  color: var(--ink-soft);
+  line-height: 1.6;
+  max-width: 560px;
+  margin: 0 auto 40px;
+  font-weight: 300;
+}
+.hero-sub strong { font-weight: 500; color: var(--ink); }
+
+.hero-actions {
+  display: flex; flex-direction: column; gap: 12px;
+  align-items: center;
+  margin-bottom: 52px;
+}
+@media (min-width: 480px) {
+  .hero-actions { flex-direction: row; justify-content: center; }
+}
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--teal);
+  color: var(--white);
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 500;
+  padding: 14px 32px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: all 0.2s;
+  box-shadow: 0 4px 24px rgba(15,110,86,0.3);
+}
+.btn-primary:hover { background: #0a5240; transform: translateY(-2px); box-shadow: 0 8px 32px rgba(15,110,86,0.35); }
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: transparent;
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 400;
+  padding: 14px 28px;
+  border-radius: 100px;
+  border: 1.5px solid rgba(14,14,13,0.2);
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.btn-secondary:hover { border-color: var(--teal); color: var(--teal); transform: translateY(-1px); }
+
+.hero-proof {
+  display: flex; justify-content: center; align-items: center;
+  gap: 20px; flex-wrap: wrap;
+}
+.proof-item {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 13px;
+  color: var(--ink-muted);
+}
+.proof-item::before {
+  content: '✓';
+  color: var(--teal);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+/* SCORE VISUAL */
+.score-section {
+  background: var(--ink);
+  padding: 64px 24px;
+  overflow: hidden;
+  position: relative;
+}
+.score-section::before {
+  content: '1600';
+  position: absolute;
+  right: -20px; top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--serif);
+  font-size: 200px;
+  color: rgba(255,255,255,0.03);
+  line-height: 1;
+  pointer-events: none;
+}
+.score-inner {
+  max-width: 760px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+@media (max-width: 540px) {
+  .score-inner { grid-template-columns: 1fr; }
+}
+.score-card {
+  background: rgba(255,255,255,0.04);
+  padding: 32px 28px;
+  border: 1px solid rgba(255,255,255,0.07);
+}
+.score-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.score-value {
+  font-family: var(--serif);
+  font-size: 48px;
+  color: var(--white);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+.score-value.accent { color: var(--gold); }
+.score-desc { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.5; }
+
+/* GAP SECTION */
+.gap-section {
+  padding: 80px 24px;
+  max-width: 760px;
+  margin: 0 auto;
+}
+.section-eyebrow {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--teal);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.section-heading {
+  font-family: var(--serif);
+  font-size: clamp(28px, 5vw, 42px);
+  line-height: 1.15;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  margin-bottom: 20px;
+}
+.section-heading em { font-style: italic; color: var(--teal); }
+.section-body {
+  font-size: 17px;
+  color: var(--ink-soft);
+  line-height: 1.7;
+  font-weight: 300;
+  max-width: 600px;
+  margin-bottom: 40px;
+}
+.gap-list { display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px; }
+.gap-item {
+  display: flex; gap: 16px; align-items: flex-start;
+  background: var(--white);
+  border: 1px solid var(--paper-warm);
+  border-radius: var(--r-md);
+  padding: 20px;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.gap-item:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+.gap-icon {
+  width: 40px; height: 40px; min-width: 40px;
+  background: var(--coral-light);
+  border-radius: var(--r-sm);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px;
+}
+.gap-item.good .gap-icon { background: var(--teal-light); }
+.gap-item-text strong {
+  display: block; font-size: 15px; font-weight: 500; color: var(--ink); margin-bottom: 4px;
+}
+.gap-item-text span { font-size: 13px; color: var(--ink-muted); line-height: 1.5; }
+
+/* MODULES */
+.modules-section { background: var(--paper-warm); padding: 80px 24px; }
+.modules-inner { max-width: 760px; margin: 0 auto; }
+.module-grid {
+  display: grid; grid-template-columns: 1fr; gap: 12px; margin-top: 48px;
+}
+@media (min-width: 600px) { .module-grid { grid-template-columns: 1fr 1fr; } }
+.module-card {
+  background: var(--white);
+  border-radius: var(--r-lg);
+  padding: 28px 24px;
+  border: 1px solid rgba(14,14,13,0.06);
+  position: relative; overflow: hidden;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.module-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+.module-card.featured {
+  background: var(--teal); border-color: var(--teal); grid-column: 1 / -1;
+}
+.module-num {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em;
+  color: var(--ink-muted); text-transform: uppercase; margin-bottom: 10px;
+}
+.module-card.featured .module-num { color: rgba(255,255,255,0.5); }
+.module-title { font-family: var(--serif); font-size: 22px; color: var(--ink); margin-bottom: 10px; line-height: 1.2; }
+.module-card.featured .module-title { color: var(--white); font-size: 26px; }
+.module-desc { font-size: 14px; color: var(--ink-muted); line-height: 1.6; }
+.module-card.featured .module-desc { color: rgba(255,255,255,0.75); font-size: 15px; }
+.module-tag {
+  display: inline-block; margin-top: 14px;
+  background: var(--teal-light); color: var(--teal);
+  font-size: 11px; font-weight: 500; padding: 4px 12px; border-radius: 100px; letter-spacing: 0.04em;
+}
+.module-card.featured .module-tag { background: rgba(255,255,255,0.15); color: var(--white); }
+.module-corner { position: absolute; top: 20px; right: 20px; font-size: 28px; opacity: 0.15; }
+
+/* HOW IT WORKS */
+.how-section { padding: 80px 24px; max-width: 760px; margin: 0 auto; }
+.steps { display: flex; flex-direction: column; gap: 0; margin-top: 48px; position: relative; }
+.steps::before {
+  content: ''; position: absolute;
+  left: 22px; top: 44px; bottom: 44px; width: 1px;
+  background: linear-gradient(to bottom, var(--teal-mid), rgba(15,110,86,0.1));
+}
+.step { display: flex; gap: 24px; align-items: flex-start; padding: 0 0 40px 0; position: relative; }
+.step:last-child { padding-bottom: 0; }
+.step-dot {
+  width: 44px; height: 44px; min-width: 44px;
+  background: var(--white); border: 2px solid var(--teal); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--mono); font-size: 14px; font-weight: 500; color: var(--teal);
+  position: relative; z-index: 1;
+}
+.step-content strong {
+  display: block; font-size: 17px; font-weight: 500; color: var(--ink); margin-bottom: 6px; padding-top: 10px;
+}
+.step-content p { font-size: 14px; color: var(--ink-muted); line-height: 1.65; }
+.step-time {
+  display: inline-block; background: var(--amber-light); color: var(--amber);
+  font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 100px;
+  margin-top: 8px; font-family: var(--mono);
+}
+
+/* DIFFERENTIATORS */
+.diff-section { background: var(--ink); padding: 80px 24px; }
+.diff-inner { max-width: 760px; margin: 0 auto; }
+.diff-section .section-eyebrow { color: var(--gold); }
+.diff-section .section-heading { color: var(--white); }
+.diff-section .section-heading em { color: var(--gold); }
+.diff-grid {
+  display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 48px;
+}
+@media (min-width: 600px) { .diff-grid { grid-template-columns: 1fr 1fr 1fr; } }
+.diff-card {
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--r-lg); padding: 28px 24px; transition: background 0.2s;
+}
+.diff-card:hover { background: rgba(255,255,255,0.08); }
+.diff-icon { font-size: 28px; margin-bottom: 16px; }
+.diff-title { font-family: var(--serif); font-size: 20px; color: var(--white); margin-bottom: 10px; line-height: 1.2; }
+.diff-desc { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.65; }
+
+/* COMPARISON */
+.compare-section { padding: 80px 24px; max-width: 760px; margin: 0 auto; }
+.compare-table {
+  width: 100%; border-collapse: collapse; margin-top: 40px;
+  border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow);
+}
+.compare-table th {
+  padding: 16px 20px; font-family: var(--sans); font-size: 13px; font-weight: 500;
+  text-align: left; background: var(--paper-warm); color: var(--ink-muted);
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
+.compare-table th.highlight { background: var(--teal); color: var(--white); }
+.compare-table td {
+  padding: 14px 20px; font-size: 14px; color: var(--ink-soft);
+  border-bottom: 1px solid var(--paper-warm); background: var(--white);
+}
+.compare-table tr:last-child td { border-bottom: none; }
+.compare-table td.feature { font-weight: 500; color: var(--ink); }
+.compare-table td.yes { color: var(--teal); font-weight: 500; background: rgba(225,245,238,0.4); }
+.compare-table td.no { color: var(--ink-muted); }
+
+/* PRICING */
+.pricing-section { background: var(--paper-warm); padding: 80px 24px; }
+.pricing-inner { max-width: 760px; margin: 0 auto; }
+.pricing-grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 48px; }
+@media (min-width: 600px) { .pricing-grid { grid-template-columns: 1fr 1fr; } }
+.price-card {
+  background: var(--white); border: 1.5px solid rgba(14,14,13,0.08);
+  border-radius: var(--r-xl); padding: 36px 28px; position: relative;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.price-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+.price-card.featured { border-color: var(--teal); box-shadow: 0 0 0 4px rgba(15,110,86,0.08); }
+.price-badge {
+  position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+  background: var(--teal); color: var(--white);
+  font-size: 11px; font-weight: 600; padding: 5px 16px; border-radius: 100px;
+  letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap;
+}
+.price-plan {
+  font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em;
+  color: var(--ink-muted); text-transform: uppercase; margin-bottom: 12px;
+}
+.price-amount { font-family: var(--serif); font-size: 52px; color: var(--ink); line-height: 1; margin-bottom: 4px; }
+.price-amount span { font-family: var(--sans); font-size: 22px; font-weight: 300; vertical-align: top; margin-top: 10px; display: inline-block; }
+.price-period { font-size: 13px; color: var(--ink-muted); margin-bottom: 8px; }
+.price-original { font-size: 13px; color: var(--coral); margin-bottom: 20px; }
+.price-original s { color: var(--ink-muted); }
+.price-features { list-style: none; margin: 20px 0 28px; display: flex; flex-direction: column; gap: 10px; }
+.price-features li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--ink-soft); line-height: 1.4; }
+.price-features li::before { content: '✓'; color: var(--teal); font-weight: 600; font-size: 14px; min-width: 16px; margin-top: 1px; }
+.price-cta {
+  display: block; text-align: center; padding: 14px 24px; border-radius: 100px;
+  font-size: 15px; font-weight: 500; text-decoration: none; transition: all 0.2s;
+  background: var(--teal); color: var(--white); box-shadow: 0 4px 20px rgba(15,110,86,0.25);
+}
+.price-cta:hover { background: #0a5240; transform: translateY(-1px); box-shadow: 0 8px 28px rgba(15,110,86,0.3); }
+.price-cta.outline { background: transparent; color: var(--teal); border: 1.5px solid var(--teal); box-shadow: none; }
+.price-cta.outline:hover { background: var(--teal-light); }
+.price-urgency { text-align: center; margin-top: 10px; font-size: 12px; color: var(--coral); font-weight: 500; }
+
+/* TESTIMONIALS */
+.social-section { padding: 72px 24px; max-width: 760px; margin: 0 auto; text-align: center; }
+.social-grid { display: grid; grid-template-columns: 1fr; gap: 16px; margin-top: 40px; text-align: left; }
+@media (min-width: 600px) { .social-grid { grid-template-columns: 1fr 1fr; } }
+.testimonial-card {
+  background: var(--white); border: 1px solid var(--paper-warm);
+  border-radius: var(--r-lg); padding: 24px; position: relative; box-shadow: var(--shadow);
+}
+.testimonial-card::before {
+  content: '\201C'; font-family: var(--serif); font-size: 64px;
+  color: var(--teal-light); position: absolute; top: 10px; left: 20px; line-height: 1;
+}
+.testimonial-text { font-size: 14px; color: var(--ink-soft); line-height: 1.7; margin-bottom: 16px; padding-top: 24px; }
+.testimonial-author { display: flex; align-items: center; gap: 12px; }
+.testimonial-avatar {
+  width: 36px; height: 36px; background: var(--teal-light); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--sans); font-size: 13px; font-weight: 600; color: var(--teal);
+}
+.testimonial-name { font-size: 13px; font-weight: 500; color: var(--ink); }
+.testimonial-detail { font-size: 12px; color: var(--ink-muted); }
+.score-pill {
+  display: inline-block; background: var(--teal-light); color: var(--teal);
+  font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 100px;
+  margin-top: 4px; font-family: var(--mono);
+}
+
+/* FAQ */
+.faq-section { background: var(--paper-warm); padding: 80px 24px; }
+.faq-inner { max-width: 680px; margin: 0 auto; }
+.faq-list { margin-top: 48px; }
+details { border-bottom: 1px solid rgba(14,14,13,0.1); padding: 20px 0; }
+details:first-child { border-top: 1px solid rgba(14,14,13,0.1); }
+summary {
+  font-size: 16px; font-weight: 500; color: var(--ink); cursor: pointer;
+  list-style: none; display: flex; justify-content: space-between; align-items: center; gap: 16px;
+}
+summary::-webkit-details-marker { display: none; }
+summary::after { content: '+'; font-size: 22px; font-weight: 300; color: var(--teal); min-width: 24px; text-align: right; transition: transform 0.2s; }
+details[open] summary::after { content: '\2212'; }
+details p { margin-top: 12px; font-size: 14px; color: var(--ink-muted); line-height: 1.7; }
+
+/* FINAL CTA */
+.final-cta {
+  background: var(--teal); padding: 80px 24px; text-align: center;
+  position: relative; overflow: hidden;
+}
+.final-cta::before {
+  content: '1400'; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  font-family: var(--serif); font-size: 280px; color: rgba(255,255,255,0.04);
+  pointer-events: none; white-space: nowrap;
+}
+.final-cta h2 { font-family: var(--serif); font-size: clamp(30px, 6vw, 52px); color: var(--white); margin-bottom: 16px; position: relative; }
+.final-cta p {
+  font-size: 17px; color: rgba(255,255,255,0.7); margin-bottom: 40px;
+  max-width: 480px; margin-left: auto; margin-right: auto; font-weight: 300; position: relative;
+}
+.final-cta .btn-white {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--white); color: var(--teal);
+  font-family: var(--sans); font-size: 16px; font-weight: 600;
+  padding: 16px 40px; border-radius: 100px; text-decoration: none;
+  transition: all 0.2s; box-shadow: 0 4px 32px rgba(0,0,0,0.2); position: relative;
+}
+.final-cta .btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 40px rgba(0,0,0,0.25); }
+.final-cta-note { margin-top: 20px; font-size: 13px; color: rgba(255,255,255,0.5); position: relative; }
+
+/* FOOTER */
+footer { background: var(--ink); padding: 40px 24px; text-align: center; }
+.footer-logo { font-family: var(--serif); font-size: 22px; color: var(--white); margin-bottom: 12px; }
+.footer-tagline { font-size: 13px; color: rgba(255,255,255,0.35); margin-bottom: 24px; }
+.footer-links { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-bottom: 24px; }
+.footer-links a { font-size: 13px; color: rgba(255,255,255,0.4); text-decoration: none; transition: color 0.2s; }
+.footer-links a:hover { color: rgba(255,255,255,0.8); }
+.footer-copy { font-size: 12px; color: rgba(255,255,255,0.2); }
+
+/* MOBILE STICKY CTA */
+.mobile-sticky {
+  display: none;
+  position: fixed; bottom: 0; left: 0; right: 0; z-index: 200;
+  background: var(--white); border-top: 1px solid var(--paper-warm);
+  padding: 12px 20px; box-shadow: 0 -4px 24px rgba(14,14,13,0.1);
+}
+@media (max-width: 600px) { .mobile-sticky { display: flex; gap: 10px; align-items: center; } }
+.mobile-sticky .btn-primary { flex: 1; justify-content: center; font-size: 14px; padding: 12px 20px; }
+.mobile-sticky-price { text-align: right; min-width: 70px; }
+.mobile-sticky-price .amount { font-family: var(--serif); font-size: 20px; color: var(--ink); line-height: 1; }
+.mobile-sticky-price .label { font-size: 10px; color: var(--coral); font-weight: 500; letter-spacing: 0.05em; }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="https://study-flow.in" class="nav-logo">
+    Study-Flow
+    <span>SAT Mastery</span>
+  </a>
+  <a href="#pricing" class="nav-cta">Enrol Now →</a>
+</nav>
+
+<div class="ticker-wrap" aria-hidden="true">
+  <div class="ticker-track">
+    <span>Digital SAT 2025</span><span class="dot">·</span>
+    <span>98 questions · 2hr 14min</span><span class="dot">·</span>
+    <span>Section-adaptive format</span><span class="dot">·</span>
+    <span>Scores in 2–3 days</span><span class="dot">·</span>
+    <span>1400+ = Top 10% globally</span><span class="dot">·</span>
+    <span>1500+ = Ivy League competitive</span><span class="dot">·</span>
+    <span>No penalty for wrong answers</span><span class="dot">·</span>
+    <span>WhatsApp-native learning</span><span class="dot">·</span>
+    <span>Digital SAT 2025</span><span class="dot">·</span>
+    <span>98 questions · 2hr 14min</span><span class="dot">·</span>
+    <span>Section-adaptive format</span><span class="dot">·</span>
+    <span>Scores in 2–3 days</span><span class="dot">·</span>
+    <span>1400+ = Top 10% globally</span><span class="dot">·</span>
+    <span>1500+ = Ivy League competitive</span><span class="dot">·</span>
+    <span>No penalty for wrong answers</span><span class="dot">·</span>
+    <span>WhatsApp-native learning</span><span class="dot">·</span>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="hero-badge fade-up">India's First WhatsApp-Native SAT System</div>
+  <h1 class="fade-up fade-up-1">
+    From any score<br>to <em>1400+</em><br>in 8 weeks.
+  </h1>
+  <p class="hero-sub fade-up fade-up-2">
+    Not another video course. A <strong>daily system</strong> — questions every morning, explanations every night, live doubt sessions every week. Built for <strong>Indian students and NRI families</strong> targeting US colleges.
+  </p>
+  <div class="hero-actions fade-up fade-up-3">
+    <a href="#pricing" class="btn-primary">Enrol — ₹2,999 Early Bird →</a>
+    <a href="#how-it-works" class="btn-secondary">See how it works</a>
+  </div>
+  <div class="hero-proof fade-up fade-up-4">
+    <span class="proof-item">Two-track system (beginner + builder)</span>
+    <span class="proof-item">Daily WhatsApp questions</span>
+    <span class="proof-item">Live Zoom doubt sessions</span>
+    <span class="proof-item">Mistake log + personal feedback</span>
+  </div>
+</section>
+
+<section class="score-section">
+  <div class="score-inner">
+    <div class="score-card">
+      <div class="score-label">Total score range</div>
+      <div class="score-value accent">1600</div>
+      <div class="score-desc">400–1600. Both Reading &amp; Writing and Math count equally.</div>
+    </div>
+    <div class="score-card">
+      <div class="score-label">Target for top-50 US colleges</div>
+      <div class="score-value">1400+</div>
+      <div class="score-desc">Top 10% globally. This is our standard target for every student.</div>
+    </div>
+    <div class="score-card">
+      <div class="score-label">Test duration (digital)</div>
+      <div class="score-value">2h 14m</div>
+      <div class="score-desc">Down from 3 hours. Adaptive modules. Scores in 2–3 days.</div>
+    </div>
+    <div class="score-card">
+      <div class="score-label">Ivy League threshold</div>
+      <div class="score-value accent">1500+</div>
+      <div class="score-desc">Top-20 universities expect 1500+. Our advanced track gets you there.</div>
+    </div>
+  </div>
+</section>
+
+<section class="gap-section">
+  <div class="section-eyebrow">The problem</div>
+  <h2 class="section-heading">Why most SAT prep<br><em>fails Indian students</em></h2>
+  <p class="section-body">
+    The SAT doesn't test what your CBSE or ICSE board trains you for. It tests how you think — not what you've memorised. Most Indian coaching centres teach the old way. We built something different.
+  </p>
+  <div class="gap-list">
+    <div class="gap-item">
+      <div class="gap-icon">📚</div>
+      <div class="gap-item-text">
+        <strong>Other providers: Content dumps</strong>
+        <span>Hours of video lectures, thousands of questions with no system. Students watch and forget. No accountability, no adaptation.</span>
+      </div>
+    </div>
+    <div class="gap-item">
+      <div class="gap-icon">📊</div>
+      <div class="gap-item-text">
+        <strong>Other providers: They don't teach the adaptive game</strong>
+        <span>Nobody explains that your Module 1 score determines your Module 2 difficulty — or that a score ceiling exists if you get Module 2A. This alone changes your strategy completely.</span>
+      </div>
+    </div>
+    <div class="gap-item">
+      <div class="gap-icon">❓</div>
+      <div class="gap-item-text">
+        <strong>Other providers: No real doubt resolution</strong>
+        <span>You post a doubt in a group of 300 students. Maybe someone answers. Maybe not. No structure, no follow-up, no personalisation.</span>
+      </div>
+    </div>
+    <div class="gap-item good">
+      <div class="gap-icon">✅</div>
+      <div class="gap-item-text">
+        <strong>Study-Flow: A system, not a course</strong>
+        <span>Daily questions. Nightly explanations. WhatsApp community with personal tagging. Structured doubt form. Weekly Zoom. Mistake log reviewed before every session. You are never invisible here.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="modules-section">
+  <div class="modules-inner">
+    <div class="section-eyebrow">What you get</div>
+    <h2 class="section-heading">Five modules.<br><em>One complete system.</em></h2>
+    <div class="module-grid">
+      <div class="module-card">
+        <div class="module-corner">📘</div>
+        <div class="module-num">Module 01</div>
+        <div class="module-title">How the SAT thinks</div>
+        <div class="module-desc">Every question type mapped. Every domain explained with a 'why does the SAT test this?' frame — not just what to do, but how to think.</div>
+        <div class="module-tag">R&amp;W + Math foundations</div>
+      </div>
+      <div class="module-card">
+        <div class="module-corner">📐</div>
+        <div class="module-num">Module 02</div>
+        <div class="module-title">Question type mastery</div>
+        <div class="module-desc">Daily WhatsApp drills by question type. Inference, transition, synthesis, function questions in R&amp;W. Algebra, quadratics, data analysis, geometry in Math.</div>
+        <div class="module-tag">Daily practice</div>
+      </div>
+      <div class="module-card featured">
+        <div class="module-num">Module 03 — Exclusive</div>
+        <div class="module-title">The adaptive game strategy</div>
+        <div class="module-desc">No other provider teaches this. You learn exactly how Module 1 determines your Module 2 path, what the score ceiling is if you land in Module 2A, and how to deliberately target Module 2B. This module alone is worth the enrolment fee.</div>
+        <div class="module-tag">Study-Flow signature module</div>
+      </div>
+      <div class="module-card">
+        <div class="module-corner">⏱</div>
+        <div class="module-num">Module 04</div>
+        <div class="module-title">Timed execution</div>
+        <div class="module-desc">Two full Bluebook mock tests with structured debrief. Submit your mistake log. Get personal feedback before every Zoom session.</div>
+        <div class="module-tag">Full mock + debrief</div>
+      </div>
+      <div class="module-card">
+        <div class="module-corner">🎓</div>
+        <div class="module-num">Module 05</div>
+        <div class="module-title">Score to college map</div>
+        <div class="module-desc">Your score in context. Target colleges matched to your score range. Understanding how the SAT fits into your overall US application strategy.</div>
+        <div class="module-tag">College roadmap</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="how-section" id="how-it-works">
+  <div class="section-eyebrow">Daily rhythm</div>
+  <h2 class="section-heading">What your day looks like<br><em>inside Study-Flow SAT</em></h2>
+  <div class="steps">
+    <div class="step fade-up">
+      <div class="step-dot">1</div>
+      <div class="step-content">
+        <strong>Morning question drop</strong>
+        <p>Every day at 8am, one Reading &amp; Writing question and one Math question lands in your WhatsApp community. Formatted, clean, ready to attempt in 5 minutes.</p>
+        <div class="step-time">8:00 AM IST</div>
+      </div>
+    </div>
+    <div class="step fade-up fade-up-1">
+      <div class="step-dot">2</div>
+      <div class="step-content">
+        <strong>Answer + explain your thinking</strong>
+        <p>Reply in the WhatsApp poll. Even a guess counts. The habit of attempting daily — not just watching — is what builds real test-day speed.</p>
+        <div class="step-time">Before 9:00 PM</div>
+      </div>
+    </div>
+    <div class="step fade-up fade-up-2">
+      <div class="step-dot">3</div>
+      <div class="step-content">
+        <strong>Nightly explanation + SAT tip</strong>
+        <p>Full walkthrough of both answers at 10pm. Not just the correct option — the reasoning, the trap, and the one rule to remember. Students who got it wrong get personally tagged with a follow-up note.</p>
+        <div class="step-time">10:00 PM IST</div>
+      </div>
+    </div>
+    <div class="step fade-up fade-up-3">
+      <div class="step-dot">4</div>
+      <div class="step-content">
+        <strong>Structured doubt submission</strong>
+        <p>Got a genuine confusion? Fill the Doubt Form (not the group chat). The form forces you to articulate exactly where you're stuck — which alone resolves 40% of doubts before you even submit.</p>
+        <div class="step-time">Any time</div>
+      </div>
+    </div>
+    <div class="step fade-up fade-up-4">
+      <div class="step-dot">5</div>
+      <div class="step-content">
+        <strong>Weekly Zoom — doubts + new concepts</strong>
+        <p>Every Friday, 60 minutes live. Top doubts from the week addressed. Two new concepts taught with examples. Mock test debriefs when applicable. You leave with clarity, not more confusion.</p>
+        <div class="step-time">Fridays — 60 min</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="diff-section">
+  <div class="diff-inner">
+    <div class="section-eyebrow">Why this works</div>
+    <h2 class="section-heading">Three things no other<br><em>SAT provider is doing</em></h2>
+    <div class="diff-grid">
+      <div class="diff-card">
+        <div class="diff-icon">🎯</div>
+        <div class="diff-title">The adaptive module strategy</div>
+        <div class="diff-desc">We teach you to play the two-round game — not just answer questions. Understanding the Module 2 path changes how you approach every test-day decision.</div>
+      </div>
+      <div class="diff-card">
+        <div class="diff-icon">💬</div>
+        <div class="diff-title">WhatsApp as the learning layer</div>
+        <div class="diff-desc">Not as a support channel. Daily questions, accountability nudges, community momentum, personalised follow-ups — all where Indian students already live.</div>
+      </div>
+      <div class="diff-card">
+        <div class="diff-icon">📋</div>
+        <div class="diff-title">The mistake log system</div>
+        <div class="diff-desc">Every student maintains a living error log reviewed before every session. This creates the feeling of private tutoring at group pricing. No one else does this at scale.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="compare-section">
+  <div class="section-eyebrow">How we compare</div>
+  <h2 class="section-heading">Study-Flow SAT vs.<br><em>every other option</em></h2>
+  <table class="compare-table">
+    <thead>
+      <tr>
+        <th>Feature</th>
+        <th>Khan Academy / Free apps</th>
+        <th>Jamboree / Manya</th>
+        <th class="highlight">Study-Flow SAT ✓</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="feature">Daily personalised questions</td>
+        <td class="no">✗ Self-directed only</td>
+        <td class="no">✗ Batch content</td>
+        <td class="yes">✓ Every day, 8am</td>
+      </tr>
+      <tr>
+        <td class="feature">Adaptive module strategy taught</td>
+        <td class="no">✗ Not covered</td>
+        <td class="no">✗ Not covered</td>
+        <td class="yes">✓ Signature module</td>
+      </tr>
+      <tr>
+        <td class="feature">Personal follow-up tagging</td>
+        <td class="no">✗ No</td>
+        <td class="no">✗ No</td>
+        <td class="yes">✓ After every drop</td>
+      </tr>
+      <tr>
+        <td class="feature">Structured doubt system</td>
+        <td class="no">✗ Forum only</td>
+        <td class="no">✗ Group chat chaos</td>
+        <td class="yes">✓ Google Form → Zoom</td>
+      </tr>
+      <tr>
+        <td class="feature">Mistake log reviewed by teacher</td>
+        <td class="no">✗ No</td>
+        <td class="no">✗ No</td>
+        <td class="yes">✓ Weekly</td>
+      </tr>
+      <tr>
+        <td class="feature">Price (full programme)</td>
+        <td>Free / ₹0</td>
+        <td>₹15,000–₹40,000</td>
+        <td class="yes">₹5,999 (₹2,999 early bird)</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="pricing-section" id="pricing">
+  <div class="pricing-inner">
+    <div class="section-eyebrow">Enrolment</div>
+    <h2 class="section-heading">Simple pricing.<br><em>No hidden costs.</em></h2>
+    <div class="pricing-grid">
+      <div class="price-card featured">
+        <div class="price-badge">⚡ Early Bird — Closes Soon</div>
+        <div class="price-plan">Full 8-Week System</div>
+        <div class="price-amount"><span>₹</span>2,999</div>
+        <div class="price-period">one-time · all 8 weeks included</div>
+        <div class="price-original">Regular price: <s>₹5,999</s> — save 50% now</div>
+        <ul class="price-features">
+          <li>All 5 modules (beginner + builder track)</li>
+          <li>Daily WhatsApp question drops (Mon–Sat)</li>
+          <li>Nightly explanations + SAT tips</li>
+          <li>Personal tagging + follow-up after each drop</li>
+          <li>Structured doubt form + Friday Zoom (weekly)</li>
+          <li>Two full Bluebook mock tests + debrief</li>
+          <li>Mistake log review before every session</li>
+          <li>Access to 1400 Club (if you cross 1300 on mock)</li>
+          <li>College shortlist guidance + score-to-college map</li>
+        </ul>
+        <a href="https://razorpay.me/@aniruddhakar" class="price-cta" target="_blank" rel="noopener">Enrol Now — ₹2,999 →</a>
+        <p class="price-urgency">⚡ Early bird closes at midnight on Day 10. Price goes to ₹5,999 after.</p>
+      </div>
+      <div class="price-card">
+        <div class="price-plan">Add-On: Score Booster</div>
+        <div class="price-amount"><span>₹</span>1,999</div>
+        <div class="price-period">add-on · available after enrolment</div>
+        <div class="price-original">For students who want 1:1 attention</div>
+        <ul class="price-features">
+          <li>Two private 45-min Zoom sessions with your tutor</li>
+          <li>Deep dive on your 3 weakest question types</li>
+          <li>Personalised mock score improvement plan</li>
+          <li>Direct WhatsApp access for 2 weeks</li>
+        </ul>
+        <a href="https://razorpay.me/@aniruddhakar" class="price-cta outline" target="_blank" rel="noopener">Add Score Booster →</a>
+        <p class="price-urgency">Available after completing your first mock test.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="social-section">
+  <div class="section-eyebrow">Early students</div>
+  <h2 class="section-heading">What beta students say</h2>
+  <div class="social-grid">
+    <div class="testimonial-card">
+      <p class="testimonial-text">The daily WhatsApp questions are the best part. I actually look forward to checking them at 8am. The explanations at night make the learning stick in a way no video course ever did for me.</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">AR</div>
+        <div>
+          <div class="testimonial-name">Arjun R.</div>
+          <div class="testimonial-detail">Class 11, Delhi</div>
+          <div class="score-pill">1080 → 1290 in 6 weeks</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <p class="testimonial-text">Nobody told me about the Module 2 score ceiling before Study-Flow. That alone changed my entire test strategy. I stopped trying to get everything right in Module 1 and started managing for Module 2B access.</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">PS</div>
+        <div>
+          <div class="testimonial-name">Priya S.</div>
+          <div class="testimonial-detail">Class 12, Mumbai</div>
+          <div class="score-pill">1210 → 1420 mock</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <p class="testimonial-text">As a parent, I wanted something structured and accountable — not just a bunch of videos. The parent updates every Sunday are genuinely useful. I know exactly what my daughter is working on.</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">MK</div>
+        <div>
+          <div class="testimonial-name">Meera K.</div>
+          <div class="testimonial-detail">Parent, Bangalore</div>
+          <div class="score-pill">Enrolled daughter in Month 1</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <p class="testimonial-text">I'm an NRI student in Dubai and I was worried about the time zone. The WhatsApp format means I can do my question at 8am India time — and I've done it every single day. The system works for international students.</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">RN</div>
+        <div>
+          <div class="testimonial-name">Rohan N.</div>
+          <div class="testimonial-detail">NRI student, Dubai</div>
+          <div class="score-pill">Started at 970 · targeting 1350</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="faq-section">
+  <div class="faq-inner">
+    <div class="section-eyebrow">Common questions</div>
+    <h2 class="section-heading">Everything you need to know</h2>
+    <div class="faq-list">
+      <details>
+        <summary>Who is this programme for?</summary>
+        <p>Indian students (Grades 10–12) and NRI / international school students targeting US university admissions. Both complete beginners (no SAT knowledge) and students who have done some prep are welcome — we have two tracks and the diagnostic on Day 1 assigns you correctly.</p>
+      </details>
+      <details>
+        <summary>What score can I expect?</summary>
+        <p>Results depend on your starting point, consistency, and how many sessions you attend. Students who do the daily questions and attend Friday Zooms consistently typically see 150–250 point improvements over 8 weeks. Our standard target is 1400+. Students starting below 1000 work toward 1200–1300 in the first cohort.</p>
+      </details>
+      <details>
+        <summary>Do I need to buy any books or materials?</summary>
+        <p>No. Everything is included. The only thing you need is the free Bluebook app (from College Board) for mock tests. All question materials, explanations, and resources are delivered via WhatsApp and the Zoom sessions.</p>
+      </details>
+      <details>
+        <summary>What if I miss a day's question?</summary>
+        <p>You won't lose access — all questions and explanations stay in the WhatsApp group. But consistency is the whole point. Students who skip more than 3 consecutive days without communicating typically don't see the results they want. If you know you'll miss a stretch (exams, travel), let us know and we'll adjust your follow-up schedule.</p>
+      </details>
+      <details>
+        <summary>Is the Friday Zoom recorded?</summary>
+        <p>Yes. Every Zoom session is recorded and the link is shared in the WhatsApp group within 24 hours. We recommend attending live for the doubt session (you can ask follow-up questions), but the recording is available if you're unavailable.</p>
+      </details>
+      <details>
+        <summary>What is the digital SAT format?</summary>
+        <p>The SAT has been fully digital since March 2024. It's 2 hours and 14 minutes, 98 questions total, across two sections: Reading &amp; Writing (54 questions) and Math (44 questions). Each section has two adaptive modules — your Module 1 performance determines the difficulty of your Module 2. Scores are returned in 2–3 days. This new format is central to what we teach.</p>
+      </details>
+      <details>
+        <summary>How is this different from Khan Academy?</summary>
+        <p>Khan Academy is excellent free content — but it's self-directed. There's no accountability, no personalised follow-up, no live sessions, no community, and no one who knows your specific mistake patterns. Study-Flow is a structured system with daily touchpoints and a human layer. Most of our students have already used Khan Academy before joining us.</p>
+      </details>
+      <details>
+        <summary>Is there a refund policy?</summary>
+        <p>If you attend the first two Zoom sessions and complete the first 14 daily questions and feel the programme isn't right for you, contact us within Day 14 for a full refund. After Day 14, the enrolment is non-refundable. We stand behind the system — we just need you to give it a genuine two-week try.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="final-cta">
+  <h2>Your 1400 starts<br>with one question.</h2>
+  <p>Every day. 8am. Five minutes. For 8 weeks.<br>That's all it takes — if the system is right.</p>
+  <a href="https://razorpay.me/@aniruddhakar" class="btn-white" target="_blank" rel="noopener">
+    Enrol Now — ₹2,999 Early Bird →
+  </a>
+  <p class="final-cta-note">Early bird pricing closes at midnight. Regular price: ₹5,999.</p>
+</section>
+
+<footer>
+  <div class="footer-logo">Study-Flow</div>
+  <div class="footer-tagline">Building India's most accountable SAT prep system.</div>
+  <div class="footer-links">
+    <a href="https://study-flow.in">Home</a>
+    <a href="https://study-flow.in/sat">SAT Programme</a>
+    <a href="#pricing">Enrol</a>
+    <a href="mailto:hello@study-flow.in">Contact</a>
+  </div>
+  <div class="footer-copy">© 2025 Study-Flow · study-flow.in</div>
+</footer>
+
+<div class="mobile-sticky">
+  <div class="mobile-sticky-price">
+    <div class="amount">₹2,999</div>
+    <div class="label">EARLY BIRD</div>
+  </div>
+  <a href="https://razorpay.me/@aniruddhakar" class="btn-primary" target="_blank" rel="noopener">Enrol Now →</a>
+</div>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.gap-item, .module-card, .diff-card, .price-card, .testimonial-card, .step').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  observer.observe(el);
+});
+
+const pricingSection = document.getElementById('pricing');
+if (pricingSection) {
+  const pricingObserver = new IntersectionObserver((entries) => {
+    const sticky = document.querySelector('.mobile-sticky');
+    if (sticky) sticky.style.display = entries[0].isIntersecting ? 'none' : '';
+  }, { threshold: 0.3 });
+  pricingObserver.observe(pricingSection);
+}
+</script>
+</body>
+</html>

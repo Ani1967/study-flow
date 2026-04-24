@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Enrol — Study-Flow SAT Mastery</title>
-<meta name="description" content="Enrol in the Study-Flow SAT Mastery System. Early bird ₹2,999 — closes at midnight.">
+<meta name="description" content="Enrol in the Study-Flow SAT Cognitive Development Programme. Founding cohort — 10 students only. ₹9,999.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -503,12 +503,12 @@ nav {
     <div class="checkout-card">
 
       <div class="checkout-header">
-        <div class="checkout-plan">Study-Flow SAT Mastery — 8-Week Full System</div>
+        <div class="checkout-plan">Study-Flow SAT — 8-Week Cognitive Development Programme</div>
         <div class="checkout-price-row">
-          <div class="checkout-price"><sup>₹</sup>2,999</div>
+          <div class="checkout-price"><sup>₹</sup>9,999</div>
         </div>
-        <div class="checkout-was">Was <s>₹5,999</s> — early bird only</div>
-        <div class="checkout-saving">⚡ You save ₹3,000 today</div>
+        <div class="checkout-was">Founding Cohort · 10 students only · Cohort 2: <s>₹14,999</s></div>
+        <div class="checkout-saving">✦ You are building this with us</div>
       </div>
 
       <div style="background:rgba(255,255,255,0.03); padding:14px 28px; border-bottom:1px solid rgba(255,255,255,0.06);">
@@ -525,16 +525,16 @@ nav {
 
         <div class="checkout-summary">
           <div class="checkout-line">
-            <span class="label">SAT Mastery System (8 weeks)</span>
-            <span class="value">₹5,999</span>
+            <span class="label">8-Week Cognitive Development Programme</span>
+            <span class="value">₹9,999</span>
           </div>
           <div class="checkout-line">
-            <span class="label">Early bird discount</span>
-            <span class="value saving">− ₹3,000</span>
+            <span class="label">Founding cohort — 10 students only</span>
+            <span class="value saving">Cohort 2: ₹14,999</span>
           </div>
           <div class="checkout-line total">
             <span class="label">Total due today</span>
-            <span class="value">₹2,999</span>
+            <span class="value">₹9,999</span>
           </div>
         </div>
 
@@ -543,16 +543,16 @@ nav {
           <label class="cohort-option selected" onclick="selectCohort(this)">
             <input type="radio" name="cohort" checked>
             <div>
-              <div class="cohort-name">May 2025 Cohort</div>
-              <div class="cohort-detail">Starts Monday · 12 spots left</div>
+              <div class="cohort-name">Founding Cohort — June 2025</div>
+              <div class="cohort-detail">10 students maximum · Starts in 5–6 weeks</div>
             </div>
             <div class="cohort-badge">Open</div>
           </label>
           <label class="cohort-option" onclick="selectCohort(this)">
             <input type="radio" name="cohort">
             <div>
-              <div class="cohort-name">June 2025 Cohort</div>
-              <div class="cohort-detail">Opens after May fills · Join waitlist</div>
+              <div class="cohort-name">Cohort 2 — July/August 2025</div>
+              <div class="cohort-detail">Opens after Founding Cohort fills · ₹14,999</div>
             </div>
             <div class="cohort-badge waitlist">Waitlist</div>
           </label>
@@ -561,18 +561,18 @@ nav {
         <div class="addon-box">
           <div class="addon-header">
             <div class="addon-title">➕ Add Score Booster</div>
-            <div class="addon-price">+₹1,999</div>
+            <div class="addon-price">+₹4,999</div>
           </div>
-          <div class="addon-desc">Two private 45-min 1:1 Zoom sessions. Deep dive on your weakest question types. Direct WhatsApp access for 2 weeks.</div>
+          <div class="addon-desc">Two private 45-min 1:1 Zoom sessions. Personal cognitive map review — exactly where your thinking is still fragile. Direct WhatsApp access for 2 weeks. Limited to 4 students per cohort.</div>
           <div class="addon-toggle" onclick="toggleAddon()">
             <div class="addon-check" id="addon-check">✓</div>
-            <span id="addon-label">Add Score Booster (₹1,999)</span>
+            <span id="addon-label">Add Score Booster (₹4,999)</span>
           </div>
         </div>
 
         <!-- REPLACE with your actual Razorpay payment page links -->
         <a href="https://razorpay.me/@aniruddhakar" class="cta-btn" id="cta-btn" target="_blank" rel="noopener">
-          <span>Enrol Now — ₹<span id="cta-price">2,999</span></span>
+          <span>Enrol Now — ₹<span id="cta-price">9,999</span></span>
           <span class="cta-arrow">→</span>
         </a>
         <div class="cta-note">Secure payment via Razorpay · UPI, cards, net banking</div>
@@ -611,7 +611,7 @@ nav {
     </div>
     <div class="faq-item">
       <div class="faq-q">Can I pay in instalments?</div>
-      <div class="faq-a">At ₹2,999, the early bird price is already our most accessible. No instalments at this tier. The Score Booster can be added later.</div>
+      <div class="faq-a">At ₹9,999, the founding cohort price is the lowest this programme will ever be offered. No instalments at this tier. The Score Booster can be added separately.</div>
     </div>
     <div class="faq-item">
       <div class="faq-q">What's the refund policy?</div>
@@ -687,13 +687,13 @@ function toggleAddon() {
   if (addonActive) {
     check.classList.add('checked');
     label.textContent = 'Score Booster added ✓';
-    price.textContent = '4,998';
-    // TODO: Replace with a Razorpay payment link fixed at ₹4,998
+    price.textContent = '14,998';
+    // TODO: Replace with a Razorpay payment link fixed at ₹14,998
     btn.href = 'https://razorpay.me/@aniruddhakar';
   } else {
     check.classList.remove('checked');
-    label.textContent = 'Add Score Booster (₹1,999)';
-    price.textContent = '2,999';
+    label.textContent = 'Add Score Booster (₹4,999)';
+    price.textContent = '9,999';
     btn.href = 'https://razorpay.me/@aniruddhakar';
   }
 }

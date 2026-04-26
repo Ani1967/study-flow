@@ -542,12 +542,12 @@ const FREE_NOTES = [
 ];
 
 const PREMIUM_NOTES = [
-  { grade:'8', subject:'maths',   title:'Complete Class 8 Maths — All Chapters', desc:'All 16 chapters, solved examples, practice Q&A', icon:'🔢', price:'₹149', amount:149 },
-  { grade:'8', subject:'science', title:'Complete Class 8 Science — All Chapters',desc:'Physics, Chemistry, Biology — full notes',       icon:'🔬', price:'₹149', amount:149 },
-  { grade:'9', subject:'maths',   title:'Complete Class 9 Maths — All Chapters', desc:'All 15 chapters with shortcuts & tricks',         icon:'📐', price:'₹199', amount:199 },
-  { grade:'9', subject:'science', title:'Complete Class 9 Science — All Chapters',desc:'Full notes + previous year questions',            icon:'⚗️', price:'₹199', amount:199 },
-  { grade:'10',subject:'maths',   title:'Complete Class 10 Maths — All Chapters',desc:'Board-focused notes, sample papers, solutions',   icon:'📊', price:'₹249', amount:249 },
-  { grade:'10',subject:'science', title:'Complete Class 10 Science — All Chapters',desc:'All chapters + important diagrams + PYQs',      icon:'🧬', price:'₹249', amount:249 },
+  { grade:'8', subject:'maths',   title:'Complete Class 8 Maths — All Chapters', desc:'All 16 chapters, solved examples, practice Q&A', icon:'🔢', price:'₹149', link:'https://rzp.io/rzp/lb9arUmJ' },
+  { grade:'8', subject:'science', title:'Complete Class 8 Science — All Chapters',desc:'Physics, Chemistry, Biology — full notes',       icon:'🔬', price:'₹149', link:'https://rzp.io/rzp/lb9arUmJ' },
+  { grade:'9', subject:'maths',   title:'Complete Class 9 Maths — All Chapters', desc:'All 15 chapters with shortcuts & tricks',         icon:'📐', price:'₹199', link:'https://rzp.io/rzp/6lAxHqFx' },
+  { grade:'9', subject:'science', title:'Complete Class 9 Science — All Chapters',desc:'Full notes + previous year questions',            icon:'⚗️', price:'₹199', link:'https://rzp.io/rzp/6lAxHqFx' },
+  { grade:'10',subject:'maths',   title:'Complete Class 10 Maths — All Chapters',desc:'Board-focused notes, sample papers, solutions',   icon:'📊', price:'₹249', link:'https://rzp.io/rzp/J7tiuEb' },
+  { grade:'10',subject:'science', title:'Complete Class 10 Science — All Chapters',desc:'All chapters + important diagrams + PYQs',      icon:'🧬', price:'₹249', link:'https://rzp.io/rzp/J7tiuEb' },
 ];
 
 function noteCard(n, free) {
@@ -563,7 +563,7 @@ function noteCard(n, free) {
         ? `<span class="note-price free-price">Free</span>
            <a href="${n.link}" target="_blank"><button class="btn-download">📥 Download</button></a>`
         : `<span class="note-price">${n.price}</span>
-           <a href="https://rzp.io/rzp/lb9arUmJ" target="_blank"><button class="btn-buy">Buy Now →</button></a>`
+           <a href="${n.link}" target="_blank"><button class="btn-buy">Buy Now →</button></a>`
       }
     </div>
   </div>`;
